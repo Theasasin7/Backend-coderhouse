@@ -1,0 +1,1 @@
+[{"title":"Audifonos","price":1199,"thumbnail":"https://m.media-amazon.com/images/I/61nezBJp73L._AC_SX679_.jpg","id":2},{"title":"Teclado","price":799,"thumbnail":"https://m.media-amazon.com/images/I/71sFaDtowqL._AC_SX679_.jpg","id":3},{"title":"Galaxy S21+","price":10599,"thumbnail":"https://m.media-amazon.com/images/I/41du4H3-AEL._AC_.jpg","id":4}]
