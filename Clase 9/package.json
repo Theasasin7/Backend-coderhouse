@@ -1,0 +1,15 @@
+{
+  "name": "clase-9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "templates.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
