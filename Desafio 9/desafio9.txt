@@ -1,0 +1,171 @@
+mongod --dbpath "path de carpeta"
+mongo
+
+show dbs
+use ecommerce
+db
+db.createCollection("mensajes")
+db.createCollection("productos")
+
+show collections
+
+db.productos.insertMany([
+  {
+    name: "graphic card",
+    price: 4800,
+    description: "awesome graphic card",
+    stock: 10,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "processor",
+    price: 1900,
+    description: "processor",
+    stock: 70,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "ram",
+    price: 900,
+    description: "ram",
+    stock: 120,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "hard drive",
+    price: 1800,
+    description: "hard drive",
+    stock: 90,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "motherboard",
+    price: 3100,
+    description: "motherboard",
+    stock: 60,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "monitor",
+    price: 3500,
+    description: "monitor",
+    stock: 20,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "power supply",
+    price: 1900,
+    description: "power supply",
+    stock: 42,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "mouse",
+    price: 200,
+    description: "mouse",
+    stock: 8,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "keyboard",
+    price: 420,
+    description: "keyboard",
+    stock: 53,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+  {
+    name: "tower case",
+    price: 350,
+    description: "tower case",
+    stock: 60,
+    thumbnail: "some url",
+    created_at: ISODate(),
+    updated_at: ISODate(),
+  },
+])
+
+db.mensajes.insertMany([
+  { autor: "ulises@gmail.com", mensaje: "hola", created_at: ISODate() },
+  { autor: "fred@hotmail.com", mensaje: "que tal?", created_at: ISODate() },
+  { autor: "ulises@gmail.com", mensaje: "todo bien, vos?", created_at: ISODate() },
+  { autor: "fred@hotmail.com", mensaje: "si si", created_at: ISODate() },
+  { autor: "ulises@gmail.com", mensaje: "tenes stock?", created_at: ISODate() },
+  { autor: "fred@hotmail.com", mensaje: "10 unidades", created_at: ISODate() },
+  { autor: "ulises@gmail.com", mensaje: "haces precio por 6?", created_at: ISODate()},
+  { autor: "fred@hotmail.com", mensaje: "20% descuento", created_at: ISODate() },
+  { autor: "ulises@gmail.com", mensaje: "dale", created_at: ISODate() },
+  { autor: "fred@hotmail.com", mensaje: "gracias", created_at: ISODate() },
+])
+
+db.mensajes.find().pretty()
+db.productos.find().pretty()
+
+db.mensajes.estimatedDocumentCount()
+db.productos.estimatedDocumentCount()
+
+db.productos.insertOne({name: "cooling system", price: 350, description: "cooling system", stock: 60, thumbnail: "some url", created_at: ISODate(), updated_at: ISODate()})
+
+db.productos.find({price: {$lt:1000}}).pretty()
+
+db.productos.find({$and:[{price: {$gt:1000 }}, {price:{$lt:3000}}]}).pretty()
+
+db.productos.find({price: {$gt:3000 }}).pretty()
+
+db.productos.find().sort({price: 1}).skip(2).limit(1).pretty()
+
+db.productos.updateMany({}, {$set:{stock: 100}})
+
+db.productos.updateMany({price: {$gt: 4000}}, {$set:{stock: 0}})
+
+db.productos.deleteMany({price: {$lt:1000}})
+
+db.createUser({user:"Pepe", pwd:"asd456",roles: [{role:"read", db:"ecommerce"}]})
+
+db.auth("Pepe", "asd456")
+
+db.getUser("Pepe")
+
+use admin
+
+db.getUsers()
+
+db.grantRolesToUser("Pepe", [ "readWrite", { role: "readWrite", db: "admin"}])
+
+db.getUsers()
+
+relogeo
+mongod --auth --dbpath "path de carpeta"
+mongo
+
+use admin
+
+db.auth("Pepe","asd456")
+
+show dbs // solo aparece db de ecommerce y admin
+
+use ecommerce
+
+show collections
+
+db.mensajes.find().pretty()
+
+db.mensajes.insertOne({autor: "ulises@hotmail.com"}) //muestra error
+
